@@ -16,6 +16,38 @@ class ViewController: UIViewController {
     @IBOutlet weak var yellowTrafficLight: UIView!
     @IBOutlet weak var greenTrafficLight: UIView!
     
+    // ---
+    
+    enum AlphaTrafficLigt {
+        case red
+        case yellow
+        case green
+    }
+    
+    var statusTrafficLight = AlphaTrafficLigt.red
+    
+    func setStatusTrafficLight() {
+        switch statusTrafficLight {
+            case .red:
+                redTrafficLight.alpha = 1
+                yellowTrafficLight.alpha = 0.3
+                greenTrafficLight.alpha = 0.3
+                statusTrafficLight = AlphaTrafficLigt.yellow
+            case .yellow:
+                redTrafficLight.alpha = 0.3
+                yellowTrafficLight.alpha = 1
+                greenTrafficLight.alpha = 0.3
+                statusTrafficLight = AlphaTrafficLigt.green
+            case .green:
+                redTrafficLight.alpha = 0.3
+                yellowTrafficLight.alpha = 0.3
+                greenTrafficLight.alpha = 1
+                statusTrafficLight = AlphaTrafficLigt.red
+        }
+    }
+    
+    // ---
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         startButton.layer.cornerRadius = 22
@@ -30,8 +62,10 @@ class ViewController: UIViewController {
         greenTrafficLight.alpha = 0.3
     }
 
-    @IBAction func startButtonAction(_ sender: UIButton) {
-        startButton.titleLabel?.text = "NEXT"
+    @IBAction func startButtonDidTapped() {
+        startButton.setTitle("NEXT", for: .normal)
+        
+        setStatusTrafficLight()
     }
     
 }
