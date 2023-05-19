@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var greenTrafficLight: UIView!
     
     //MARK: - Logic for Traffic Light
-    func setStatusTrafficLight() {
+    private func setStatusTrafficLight() {
         switch statusTrafficLight {
             case .red:
                 redTrafficLight.alpha = 1
@@ -64,7 +64,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func startButtonDidTapped() {
-        startButton.setTitle("NEXT", for: .normal)
+        if startButton.currentTitle == "START" {
+            startButton.setTitle("NEXT", for: .normal)
+        }
+        
         setStatusTrafficLight()
     }
 }
