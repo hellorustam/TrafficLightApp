@@ -8,24 +8,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var startButton: UIButton!
-    
-    @IBOutlet weak var placeTrafficLight: UIView!
-    @IBOutlet weak var redTrafficLight: UIView!
-    @IBOutlet weak var yellowTrafficLight: UIView!
-    @IBOutlet weak var greenTrafficLight: UIView!
-    
-    // ---
-    
     enum AlphaTrafficLigt {
         case red
         case yellow
         case green
     }
     
-    var statusTrafficLight = AlphaTrafficLigt.red
+    private var statusTrafficLight = AlphaTrafficLigt.red
     
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var placeTrafficLight: UIView!
+    @IBOutlet weak var redTrafficLight: UIView!
+    @IBOutlet weak var yellowTrafficLight: UIView!
+    @IBOutlet weak var greenTrafficLight: UIView!
+    
+    //MARK: - Logic for Traffic Light
     func setStatusTrafficLight() {
         switch statusTrafficLight {
             case .red:
@@ -46,16 +43,16 @@ class ViewController: UIViewController {
         }
     }
     
-    // ---
+    //MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startButton.layer.cornerRadius = 22
         
-        placeTrafficLight.layer.cornerRadius = 72
-        redTrafficLight.layer.cornerRadius = 48
-        yellowTrafficLight.layer.cornerRadius = 48
-        greenTrafficLight.layer.cornerRadius = 48
+        placeTrafficLight.layer.cornerRadius = placeTrafficLight.frame.width / 2
+        redTrafficLight.layer.cornerRadius = redTrafficLight.frame.width / 2
+        yellowTrafficLight.layer.cornerRadius = yellowTrafficLight.frame.width / 2
+        greenTrafficLight.layer.cornerRadius = greenTrafficLight.frame.width / 2
         
         redTrafficLight.alpha = 0.3
         yellowTrafficLight.alpha = 0.3
@@ -64,9 +61,7 @@ class ViewController: UIViewController {
 
     @IBAction func startButtonDidTapped() {
         startButton.setTitle("NEXT", for: .normal)
-        
         setStatusTrafficLight()
     }
-    
 }
 
