@@ -47,18 +47,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startButton.layer.cornerRadius = 22
-        
-        placeTrafficLight.layer.cornerRadius = placeTrafficLight.frame.width / 2
-        redTrafficLight.layer.cornerRadius = redTrafficLight.frame.width / 2
-        yellowTrafficLight.layer.cornerRadius = yellowTrafficLight.frame.width / 2
-        greenTrafficLight.layer.cornerRadius = greenTrafficLight.frame.width / 2
         
         redTrafficLight.alpha = 0.3
         yellowTrafficLight.alpha = 0.3
         greenTrafficLight.alpha = 0.3
     }
 
+    override func viewWillLayoutSubviews() {
+        startButton.layer.cornerRadius = startButton.frame.height / 2
+        
+        placeTrafficLight.layer.cornerRadius = placeTrafficLight.frame.width / 2
+        
+        redTrafficLight.layer.cornerRadius = redTrafficLight.frame.width / 2
+        yellowTrafficLight.layer.cornerRadius = yellowTrafficLight.frame.width / 2
+        greenTrafficLight.layer.cornerRadius = greenTrafficLight.frame.width / 2
+    }
+    
     @IBAction func startButtonDidTapped() {
         startButton.setTitle("NEXT", for: .normal)
         setStatusTrafficLight()
